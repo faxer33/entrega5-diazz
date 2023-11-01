@@ -1,0 +1,26 @@
+<!-- realTimeProducts.handlebars -->
+<h1>Real Time Products</h1>
+<ul id="productList">
+    <!-- Mostrar la lista de productos aquí -->
+</ul>
+
+<form id="productForm">
+    <label for="productName">Nombre del Producto:</label>
+    <input type="text" id="productName" name="productName" required>
+    <button type="submit">Agregar Producto</button>
+</form>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+<script>
+    const socket = io();
+
+    // Manejar eventos de socket aquí
+
+    // Manejar el formulario de creación de productos
+    document.getElementById('productForm').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const productName = document.getElementById('productName').value;
+        // Emitir un evento de socket para agregar un producto
+        socket.emit('addProduct', { name: productName });
+    });
+</script>
